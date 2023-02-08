@@ -7,6 +7,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id "net.serenity-bdd.serenity-gradle-plugin" version "3.5.0"
 }
 
 repositories {
@@ -22,9 +23,15 @@ ext{
     logbackVersion = '1.4.5'
     junitPlatformVersion = '1.9.2'
     junitJupiterversion ='5.9.2'
+    lombokVersion = '1.18.20'
 
 }
 dependencies {
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:${lombokVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:${serenityCoreVersion}"
     api "ch.qos.logback:logback-classic:${logbackVersion}"
     testImplementation "net.serenity-bdd:serenity-core:${serenitycoreversion}"
     testImplementation "net.serenity-bdd:serenity-cucumber:${serenitycoreversion}"
